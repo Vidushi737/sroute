@@ -1,0 +1,87 @@
+# =========================================================================
+# SROUTE GITIGNORE
+# Prevents sensitive files and build artifacts from being committed.
+# =========================================================================
+
+# Environment Variables & Sensitive Files
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+*.key
+*.cert
+
+# Node / Frontend Dependency & Build folders
+node_modules/
+/frontend/node_modules/
+/frontend/dist/
+/frontend/dist-ssr/
+/frontend/.svelte-kit/
+/frontend/.next/
+/frontend/.nuxt/
+/frontend/out/
+/frontend/.cache/
+/frontend/.parcel-cache/
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+.eslintcache
+
+# Python / AI Service Dependency & Build folders
+__pycache__/
+/ai-service/__pycache__/
+/ai-service/.venv/
+/ai-service/venv/
+/ai-service/env/
+/ai-service/.pytest_cache/
+*.py[cod]
+*$py.class
+*.so
+.Python
+/ai-service/build/
+/ai-service/dist/
+/ai-service/*.egg-info/
+
+# Java / Maven Backend Build folders
+/backend/target/
+/backend/*.iml
+/backend/.idea/
+/backend/.classpath
+/backend/.project
+/backend/.settings/
+/backend/bin/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# IDE & Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.tmp
+
+# Operating System files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# General Logs & Local DB directories
+logs/
+*.log
+pgdata/

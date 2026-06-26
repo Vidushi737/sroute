@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  db:
+    image: ghcr.io/payloadcms/postgis-vector:latest
+    container_name: sroute-db
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./supabase/migrations/00000000000000_mock_supabase.sql:/docker-entrypoint-initdb.d/0_mock_supabase.sql
+      - ./supabase/migrations/20260626000000_schema.sql:/docker-entrypoint-initdb.d/1_schema.sql
+      - ./supabase/seed.sql:/docker-entrypoint-initdb.d/2_seed.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  ai-service:
+    build:
+      context: ./ai-service
+      dockerfile: Dockerfile
+    container_name: sroute-ai-service
+    ports:
+      - "8000:8000"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    depends_on:
+      - db
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sroute-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SUPABASE_DB_URL=${SUPABASE_DB_URL:-jdbc:postgresql://db:5432/postgres?stringtype=unspecified}
+      - SUPABASE_DB_USERNAME=${SUPABASE_DB_USERNAME:-postgres}
+      - SUPABASE_DB_PASSWORD=${SUPABASE_DB_PASSWORD:-password}
+      - SUPABASE_ISSUER_URI=${SUPABASE_ISSUER_URI:-https://mock-issuer.supabase.co/auth/v1}
+      - AI_SERVICE_URL=http://ai-service:8000
+    depends_on:
+      - db
+      - ai-service
+
+volumes:
+  pgdata:
