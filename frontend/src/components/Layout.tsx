@@ -24,10 +24,6 @@ const Layout: React.FC = () => {
     setDays,
     budget,
     setBudget,
-    style,
-    setStyle,
-    preferences,
-    setPreferences,
     isGenerating,
     handleGenerate,
     searchQuery,
@@ -62,15 +58,15 @@ const Layout: React.FC = () => {
   }
 
   return (
-    <div className="flex min-h-screen bg-[#FFF5F5]">
+    <div className="flex min-h-screen bg-[#EAF0EE]">
       {/* Sidebar Navigation */}
-      <aside className="w-64 bg-white/60 backdrop-blur-md border-r border-[#E91E63]/8 flex flex-col justify-between p-6 shrink-0 z-20">
+      <aside className="w-64 bg-white/65 backdrop-blur-md border-r border-[#D85A38]/8 flex flex-col justify-between p-6 shrink-0 z-20">
         <div>
           {/* Logo brand */}
           <Link to="/" className="flex items-center gap-2 mb-8 px-2 no-underline">
-            <div className="w-8 h-8 rounded-lg bg-gradient-premium flex items-center justify-center text-white font-bold shadow-md shadow-[#E91E63]/20">S</div>
-            <span className="text-xl font-bold tracking-tight text-[#1E293B]">Sroute</span>
-            <span className="text-[10px] uppercase font-semibold bg-[#E91E63]/10 text-[#E91E63] px-1.5 py-0.5 rounded ml-1">AI</span>
+            <div className="w-8 h-8 rounded-lg bg-gradient-premium flex items-center justify-center text-white font-bold shadow-md shadow-[#D85A38]/20">S</div>
+            <span className="text-xl font-bold tracking-tight text-[#1C2D27]">Sroute</span>
+            <span className="text-[10px] uppercase font-semibold bg-[#D85A38]/10 text-[#D85A38] px-1.5 py-0.5 rounded ml-1">AI</span>
           </Link>
 
           {/* Nav List */}
@@ -79,7 +75,7 @@ const Layout: React.FC = () => {
               to="/dashboard"
               className={({ isActive }) => 
                 `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all no-underline ${
-                  isActive ? 'bg-[#E91E63]/10 text-[#E91E63]' : 'text-[#475569] hover:bg-[#E91E63]/5'
+                  isActive ? 'bg-[#D85A38]/10 text-[#D85A38]' : 'text-[#4F5E59] hover:bg-[#D85A38]/5'
                 }`
               }
             >
@@ -91,7 +87,7 @@ const Layout: React.FC = () => {
               to="/itineraries"
               className={({ isActive }) => 
                 `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all no-underline ${
-                  isActive ? 'bg-[#E91E63]/10 text-[#E91E63]' : 'text-[#475569] hover:bg-[#E91E63]/5'
+                  isActive ? 'bg-[#D85A38]/10 text-[#D85A38]' : 'text-[#4F5E59] hover:bg-[#D85A38]/5'
                 }`
               }
             >
@@ -103,7 +99,7 @@ const Layout: React.FC = () => {
               to="/copilot"
               className={({ isActive }) => 
                 `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all no-underline ${
-                  isActive ? 'bg-[#E91E63]/10 text-[#E91E63]' : 'text-[#475569] hover:bg-[#E91E63]/5'
+                  isActive ? 'bg-[#D85A38]/10 text-[#D85A38]' : 'text-[#4F5E59] hover:bg-[#D85A38]/5'
                 }`
               }
             >
@@ -115,7 +111,7 @@ const Layout: React.FC = () => {
               to="/saved"
               className={({ isActive }) => 
                 `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all no-underline ${
-                  isActive ? 'bg-[#E91E63]/10 text-[#E91E63]' : 'text-[#475569] hover:bg-[#E91E63]/5'
+                  isActive ? 'bg-[#D85A38]/10 text-[#D85A38]' : 'text-[#4F5E59] hover:bg-[#D85A38]/5'
                 }`
               }
             >
@@ -127,7 +123,7 @@ const Layout: React.FC = () => {
               to="/analytics"
               className={({ isActive }) => 
                 `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all no-underline ${
-                  isActive ? 'bg-[#E91E63]/10 text-[#E91E63]' : 'text-[#475569] hover:bg-[#E91E63]/5'
+                  isActive ? 'bg-[#D85A38]/10 text-[#D85A38]' : 'text-[#4F5E59] hover:bg-[#D85A38]/5'
                 }`
               }
             >
@@ -139,7 +135,7 @@ const Layout: React.FC = () => {
               to="/profile"
               className={({ isActive }) => 
                 `w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all no-underline ${
-                  isActive ? 'bg-[#E91E63]/10 text-[#E91E63]' : 'text-[#475569] hover:bg-[#E91E63]/5'
+                  isActive ? 'bg-[#D85A38]/10 text-[#D85A38]' : 'text-[#4F5E59] hover:bg-[#D85A38]/5'
                 }`
               }
             >
@@ -150,19 +146,19 @@ const Layout: React.FC = () => {
         </div>
 
         {/* User Card */}
-        <div className="border-t border-[#E91E63]/8 pt-4 flex items-center justify-between">
+        <div className="border-t border-[#D85A38]/8 pt-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full border-2 border-[#E91E63] overflow-hidden bg-gradient-premium text-white flex items-center justify-center font-semibold">
+            <div className="w-10 h-10 rounded-full border-2 border-[#D85A38] overflow-hidden bg-gradient-premium text-white flex items-center justify-center font-semibold">
               EX
             </div>
             <div>
-              <p className="text-xs font-semibold text-[#1E293B]">Alex Rivera</p>
-              <p className="text-[10px] text-[#475569]">alex@gmail.com</p>
+              <p className="text-xs font-semibold text-[#1C2D27]">Alex Rivera</p>
+              <p className="text-[10px] text-[#4F5E59]">alex@gmail.com</p>
             </div>
           </div>
           <button 
             onClick={() => navigate('/login')}
-            className="text-[#475569] hover:text-[#E91E63] transition-colors p-1 rounded-lg border-0 bg-transparent cursor-pointer"
+            className="text-[#4F5E59] hover:text-[#D85A38] transition-colors p-1 rounded-lg border-0 bg-transparent cursor-pointer"
           >
             <LogOut size={16} />
           </button>
@@ -174,26 +170,26 @@ const Layout: React.FC = () => {
         {/* Header toolbar */}
         <header className="flex justify-between items-center p-8 pb-4 bg-transparent">
           <div>
-            <h1 className="text-2xl font-bold tracking-tight text-[#1E293B] m-0">
+            <h1 className="text-2xl font-bold tracking-tight text-[#1C2D27] m-0 font-serif-mockup">
               {getPageTitle()}
             </h1>
-            <p className="text-xs text-[#475569] m-0 mt-1">Sroute – Escape tourist traps, discover real places.</p>
+            <p className="text-xs text-[#4F5E59] m-0 mt-1">Sroute – Escape tourist traps, discover real places.</p>
           </div>
 
           <div className="flex items-center gap-4">
             <div className="relative w-64">
-              <Search className="absolute left-3 top-2.5 text-[#475569]" size={16} />
+              <Search className="absolute left-3 top-2.5 text-[#4F5E59]" size={16} />
               <input 
                 type="text" 
                 placeholder="Search spots, destinations..." 
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                className="w-full bg-white/60 border border-[#E91E63]/12 rounded-xl pl-9 pr-4 py-2 text-xs focus:outline-none focus:border-[#E91E63] focus:ring-1 focus:ring-[#E91E63]/30 transition-all backdrop-blur-sm"
+                className="w-full bg-white/60 border border-[#D85A38]/12 rounded-xl pl-9 pr-4 py-2 text-xs focus:outline-none focus:border-[#D85A38] focus:ring-1 focus:ring-[#D85A38]/30 transition-all backdrop-blur-sm"
               />
             </div>
             <button 
               onClick={() => setShowCreateModal(true)}
-              className="bg-gradient-premium text-white font-medium text-xs px-4 py-2 rounded-xl flex items-center gap-1.5 hover:shadow-lg hover:shadow-[#E91E63]/20 hover:-translate-y-0.5 transition-all cursor-pointer border-0"
+              className="bg-gradient-premium text-white font-medium text-xs px-4 py-2 rounded-xl flex items-center gap-1.5 hover:shadow-lg hover:shadow-[#D85A38]/20 hover:-translate-y-0.5 transition-all cursor-pointer border-0"
             >
               <Plus size={14} />
               <span>Create Plan</span>
@@ -209,75 +205,53 @@ const Layout: React.FC = () => {
 
       {/* Modal: Create Itinerary */}
       {showCreateModal && (
-        <div className="fixed inset-0 bg-[#1E293B]/20 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="glass-panel max-w-md w-full rounded-2xl p-6 relative animate-in fade-in zoom-in-95 duration-155 bg-white/90 shadow-xl border border-[#E91E63]/10">
-            <h3 className="text-base font-bold text-[#1E293B] mb-4 m-0">Build Authentic Plan</h3>
+        <div className="fixed inset-0 bg-[#1C2D27]/20 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="glass-panel max-w-md w-full rounded-2xl p-6 relative animate-in fade-in zoom-in-95 duration-155 bg-white/90 shadow-xl border border-[#D85A38]/10">
+            <h3 className="text-base font-bold text-[#1C2D27] mb-4 m-0 font-serif-mockup">Build Authentic Plan</h3>
             
             <form onSubmit={handleCreateSubmit} className="space-y-4">
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-[#475569] uppercase">Destination City</label>
+                <label className="text-[10px] font-bold text-[#4F5E59] uppercase">Destination City</label>
                 <input 
                   type="text" 
                   value={destination} 
                   onChange={e => setDestination(e.target.value)}
                   placeholder="e.g. Paris, Tokyo, Barcelona"
                   required
-                  className="w-full bg-[#FFF5F5] border border-[#E91E63]/15 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-[#E91E63] focus:ring-1 focus:ring-[#E91E63]/20"
+                  className="w-full bg-[#EAF0EE]/50 border border-[#D85A38]/15 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-[#D85A38] focus:ring-1 focus:ring-[#D85A38]/20"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold text-[#475569] uppercase">Duration (Days)</label>
+                  <label className="text-[10px] font-bold text-[#4F5E59] uppercase">Duration (Days)</label>
                   <input 
                     type="number" 
                     min="1" 
                     max="14"
                     value={days} 
                     onChange={e => setDays(parseInt(e.target.value) || 1)}
-                    className="w-full bg-[#FFF5F5] border border-[#E91E63]/15 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-[#E91E63] focus:ring-1 focus:ring-[#E91E63]/20"
+                    className="w-full bg-[#EAF0EE]/50 border border-[#D85A38]/15 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-[#D85A38] focus:ring-1 focus:ring-[#D85A38]/20"
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold text-[#475569] uppercase">Daily Budget ($)</label>
+                  <label className="text-[10px] font-bold text-[#4F5E59] uppercase">Daily Budget ($)</label>
                   <input 
                     type="number" 
                     value={budget} 
                     onChange={e => setBudget(parseInt(e.target.value) || 0)}
-                    className="w-full bg-[#FFF5F5] border border-[#E91E63]/15 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-[#E91E63] focus:ring-1 focus:ring-[#E91E63]/20"
+                    className="w-full bg-[#EAF0EE]/50 border border-[#D85A38]/15 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-[#D85A38] focus:ring-1 focus:ring-[#D85A38]/20"
                   />
                 </div>
               </div>
 
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-[#475569] uppercase">Travel Style</label>
-                <select 
-                  value={style} 
-                  onChange={e => setStyle(e.target.value)}
-                  className="w-full bg-[#FFF5F5] border border-[#E91E63]/15 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-[#E91E63] focus:ring-1 focus:ring-[#E91E63]/20"
-                >
-                  <option value="cultural-adventure">Cultural & Local Heritage</option>
-                  <option value="culinary-foodie">Gastronomy & Local Foodie</option>
-                  <option value="budget-backpacker">Budget Backpacker</option>
-                </select>
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-[#475569] uppercase">Keywords / Preferences (comma separated)</label>
-                <input 
-                  type="text" 
-                  placeholder="e.g. quiet gardens, ramen counters, vintage shops"
-                  value={preferences} 
-                  onChange={e => setPreferences(e.target.value)}
-                  className="w-full bg-[#FFF5F5] border border-[#E91E63]/15 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-[#E91E63] focus:ring-1 focus:ring-[#E91E63]/20"
-                />
-              </div>
+              <p className="text-[10px] text-[#4F5E59] italic m-0">AI will organize your trip by region with nearby cafes, spots, and cultural food.</p>
 
               <div className="flex gap-3 justify-end pt-4">
                 <button 
                   type="button"
                   onClick={() => setShowCreateModal(false)}
-                  className="px-4 py-2 border border-[#E91E63]/12 text-[#475569] bg-transparent rounded-xl text-xs hover:bg-[#FFF5F5] cursor-pointer"
+                  className="px-4 py-2 border border-[#D85A38]/12 text-[#4F5E59] bg-transparent rounded-xl text-xs hover:bg-[#EAF0EE]/50 cursor-pointer"
                 >
                   Cancel
                 </button>

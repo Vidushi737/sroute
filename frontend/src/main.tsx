@@ -33,7 +33,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Routes>
             <Route path="/" element={<App />}>
               {/* Public/Unauthenticated routes */}
-              <Route index element={<Landing />} />
+              <Route index element={<Login />} />
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<Signup />} />
 
