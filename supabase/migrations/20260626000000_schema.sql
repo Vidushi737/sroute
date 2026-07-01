@@ -128,6 +128,7 @@ create table public.trips (
   status trip_status default 'planning',
   cover_image_url text,
   is_public boolean default false,
+  itinerary_data jsonb default '{}'::jsonb,
   created_at timestamptz default now(),
   updated_at timestamptz default now()
 );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Lock, Mail, ArrowRight, Loader2, AlertTriangle } from 'lucide-react'
+import { supabase } from '../lib/supabase'
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('')
@@ -9,21 +10,29 @@ const Login: React.FC = () => {
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
     setError('')
 
-    // Basic simulation
-    setTimeout(() => {
-      if (!email.includes('@') || password.length < 4) {
-        setError('Invalid email or password (must be at least 4 characters)')
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      })
+
+      if (error) {
+        setError(error.message)
         setIsLoading(false)
-      } else {
-        setIsLoading(false)
-        navigate('/dashboard')
+        return
       }
-    }, 1000)
+
+      // Success — navigate to dashboard
+      navigate('/dashboard')
+    } catch (err) {
+      setError('An unexpected error occurred. Please try again.')
+      setIsLoading(false)
+    }
   }
 
   return (

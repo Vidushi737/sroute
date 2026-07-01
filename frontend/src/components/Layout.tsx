@@ -16,6 +16,8 @@ import { useApp } from '../context/AppContext'
 
 const Layout: React.FC = () => {
   const {
+    user,
+    signOut,
     showCreateModal,
     setShowCreateModal,
     destination,
@@ -149,16 +151,17 @@ const Layout: React.FC = () => {
         <div className="border-t border-[#D85A38]/8 pt-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full border-2 border-[#D85A38] overflow-hidden bg-gradient-premium text-white flex items-center justify-center font-semibold">
-              EX
+              {user?.user_metadata?.full_name?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || 'U'}
             </div>
-            <div>
-              <p className="text-xs font-semibold text-[#1C2D27]">Alex Rivera</p>
-              <p className="text-[10px] text-[#4F5E59]">alex@gmail.com</p>
+            <div className="min-w-0">
+              <p className="text-xs font-semibold text-[#1C2D27] truncate">{user?.user_metadata?.full_name || 'Explorer'}</p>
+              <p className="text-[10px] text-[#4F5E59] truncate">{user?.email}</p>
             </div>
           </div>
           <button 
-            onClick={() => navigate('/login')}
+            onClick={signOut}
             className="text-[#4F5E59] hover:text-[#D85A38] transition-colors p-1 rounded-lg border-0 bg-transparent cursor-pointer"
+            title="Sign out"
           >
             <LogOut size={16} />
           </button>

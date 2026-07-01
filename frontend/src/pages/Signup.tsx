@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Lock, Mail, User, ArrowRight, Loader2, AlertTriangle } from 'lucide-react'
+import { Lock, Mail, User, ArrowRight, Loader2, AlertTriangle, CheckCircle } from 'lucide-react'
+import { supabase } from '../lib/supabase'
 
 const Signup: React.FC = () => {
   const [name, setName] = useState('')
@@ -9,28 +10,59 @@ const Signup: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+  const [success, setSuccess] = useState(false)
   const navigate = useNavigate()
 
-  const handleSignup = (e: React.FormEvent) => {
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
     setError('')
 
-    setTimeout(() => {
-      if (password !== confirmPassword) {
-        setError('Passwords do not match')
+    // Client-side validation
+    if (password !== confirmPassword) {
+      setError('Passwords do not match')
+      setIsLoading(false)
+      return
+    }
+    if (!email.includes('@')) {
+      setError('Invalid email address')
+      setIsLoading(false)
+      return
+    }
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters')
+      setIsLoading(false)
+      return
+    }
+
+    try {
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            full_name: name,
+            name: name.split(' ')[0]
+          }
+        }
+      })
+
+      if (error) {
+        setError(error.message)
         setIsLoading(false)
-      } else if (!email.includes('@')) {
-        setError('Invalid email address')
-        setIsLoading(false)
-      } else if (password.length < 6) {
-        setError('Password must be at least 6 characters')
-        setIsLoading(false)
-      } else {
-        setIsLoading(false)
-        navigate('/dashboard')
+        return
       }
-    }, 1000)
+
+      // Success
+      setSuccess(true)
+      setIsLoading(false)
+      
+      // Auto-redirect after 2 seconds
+      setTimeout(() => navigate('/dashboard'), 2000)
+    } catch (err) {
+      setError('An unexpected error occurred. Please try again.')
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -59,6 +91,13 @@ const Signup: React.FC = () => {
           <div className="bg-[#FF5252]/10 border border-[#FF5252]/20 text-[#FF5252] text-xs p-3.5 rounded-xl flex items-center gap-2">
             <AlertTriangle size={16} className="shrink-0" />
             <span>{error}</span>
+          </div>
+        )}
+
+        {success && (
+          <div className="bg-[#2A9D8F]/10 border border-[#2A9D8F]/20 text-[#2A9D8F] text-xs p-3.5 rounded-xl flex items-center gap-2">
+            <CheckCircle size={16} className="shrink-0" />
+            <span>Account created successfully! Redirecting...</span>
           </div>
         )}
 
@@ -127,8 +166,8 @@ const Signup: React.FC = () => {
 
           <button 
             type="submit"
-            disabled={isLoading}
-            className="w-full bg-[#1e293b] text-white text-xs font-semibold py-3 rounded-xl flex items-center justify-center gap-1.5 hover:bg-[#1e293b]/90 transition-all cursor-pointer border-0 shadow-sm mt-6"
+            disabled={isLoading || success}
+            className="w-full bg-[#1e293b] text-white text-xs font-semibold py-3 rounded-xl flex items-center justify-center gap-1.5 hover:bg-[#1e293b]/90 transition-all cursor-pointer border-0 shadow-sm mt-6 disabled:opacity-60"
           >
             {isLoading ? (
               <>
